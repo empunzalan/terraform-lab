@@ -61,6 +61,6 @@ resource "docker_container" "redis" {
 }
 
 # Output Redis container IP for debugging or future use
-output "redis_ip" {
-  value = docker_container.redis.ip_address
-}
+#output "redis_ip" {
+#  value = docker_container.redis.ip_address
+#}

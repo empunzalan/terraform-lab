@@ -1,4 +1,29 @@
-.*
+# Git metadata (keep important dotfiles)
 !.gitignore
 !.gitattributes
 !.gitmodules
+
+# Terraform state and config
+*.tfstate*
+.terraform/
+.terraform.lock.hcl
+
+# Sensitive environment files (optional)
+.env
+
+# macOS system files
+.DS_Store
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Python cache files (optional, if using Python)
+__pycache__/
+*.pyc
