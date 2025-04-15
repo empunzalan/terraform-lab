@@ -38,6 +38,11 @@ resource "docker_container" "nginx" {
     external = 8081   # Port exposed on the host (http://localhost:8081)
   }
 
+  volumes {
+    host_path      = abspath("${path.module}/html")
+    container_path = "/usr/share/nginx/html"
+  }
+
   # Attach to the custom Docker network
   networks_advanced {
     name = docker_network.app_network.name
