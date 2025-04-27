@@ -69,3 +69,41 @@ resource "docker_container" "redis" {
 #output "redis_ip" {
 #  value = docker_container.redis.ip_address
 #}
+
+# Build Python App Docker Image
+resource "docker_image" "python_app" {
+  name = "python-redis-app"
+  
+  build {
+    context = "${path.module}/python-app"
+  }
+}
+
+# Create Python App Container
+resource "docker_container" "python_app" {
+  name  = "python-redis-app-container"
+  image = docker_image.python_app.name
+
+  networks_advanced {
+    name = docker_network.app_network.name
+  }
+}
+
+# Build Node.js App Docker Image
+resource "docker_image" "nodejs_app" {
+  name = "nodejs-redis-app"
+  
+  build {
+    context = "${path.module}/nodejs-app"
+  }
+}
+
+# Create Node.js App Container
+resource "docker_container" "nodejs_app" {
+  name  = "nodejs-redis-app-container"
+  image = docker_image.nodejs_app.name
+
+  networks_advanced {
+    name = docker_network.app_network.name
+  }
+}
